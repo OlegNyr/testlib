@@ -4,7 +4,7 @@
 
     <groupId>ru.nyrk.ai.spring</groupId>
     <artifactId>mylibraly</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -36,7 +36,7 @@
         <connection>scm:git:git@github.com:OlegNyr/testlib.git</connection>
         <url>scm:git:git@github.com:OlegNyr/testlib.git</url>
         <developerConnection>scm:git:git@github.com:OlegNyr/testlib.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>v1.1</tag>
   </scm>
     <build>
         <plugins>
