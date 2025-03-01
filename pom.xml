@@ -23,7 +23,7 @@
             <url>http://localhost:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
         <repository>
-            <id>local-repo-snap</id>
+            <id>local-repo-releas</id>
             <name>local-repo</name>
             <snapshots>
                 <enabled>false</enabled>
