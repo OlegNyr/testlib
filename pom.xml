@@ -14,14 +14,6 @@
 
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>local-repo-snap</id>
-            <name>local-repo</name>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <url>http://localhost:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>
         <repository>
             <id>local-repo-releas</id>
             <name>local-repo</name>
@@ -72,7 +64,7 @@
                         </executions>
                         <configuration>
                             <serverId>local-repo-releas</serverId>
-                            <nexusUrl>http://localhost:8081/repository/maven-releases/</nexusUrl>
+<!--                            <nexusUrl>http://localhost:8081/repository/maven-releases/</nexusUrl>-->
                             <skipStaging>true</skipStaging>
                         </configuration>
                     </plugin>
