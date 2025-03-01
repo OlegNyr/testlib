@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+
     <distributionManagement>
         <snapshotRepository>
             <id>local-repo-snap</id>
@@ -23,5 +24,15 @@
             </snapshots>
             <url>http://localhost:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
+        <repository>
+            <id>local-repo-snap</id>
+            <name>local-repo</name>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
     </distributionManagement>
+
+
 </project>
