@@ -37,6 +37,7 @@
     <scm>
         <connection>scm:git:git@github.com:OlegNyr/testlib.git</connection>
         <url>scm:git:git@github.com:OlegNyr/testlib.git</url>
+        <developerConnection>scm:git:git@github.com:OlegNyr/testlib.git</developerConnection>
     </scm>
     <build>
         <plugins>
