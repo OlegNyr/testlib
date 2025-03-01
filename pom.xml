@@ -4,7 +4,7 @@
 
     <groupId>ru.nyrk.ai.spring</groupId>
     <artifactId>mylibraly</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.7-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -17,9 +17,6 @@
         <repository>
             <id>local-repo-releas</id>
             <name>local-repo</name>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
             <url>http://localhost:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
@@ -42,6 +39,26 @@
                     <releaseProfiles>releases</releaseProfiles>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>deploy</phase>
+                        <goals><goal>jar-no-fork</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>deploy</phase>
+                        <goals><goal>jar</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -49,6 +66,13 @@
             <id>releases</id>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -64,7 +88,7 @@
                         </executions>
                         <configuration>
                             <serverId>local-repo-releas</serverId>
-<!--                            <nexusUrl>http://localhost:8081/repository/maven-releases/</nexusUrl>-->
+                            <nexusUrl>http://localhost:8081/nexus</nexusUrl>
                             <skipStaging>true</skipStaging>
                         </configuration>
                     </plugin>
