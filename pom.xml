@@ -71,8 +71,8 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <serverId>local-repo-snap</serverId>
-                            <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
+                            <serverId>local-repo-releas</serverId>
+                            <nexusUrl>http://localhost:8081/repository/maven-releases/</nexusUrl>
                             <skipStaging>true</skipStaging>
                         </configuration>
                     </plugin>
