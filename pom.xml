@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.nyrk.ai.spring</groupId>
@@ -10,6 +11,9 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <nexusHost>http://localhost:8081</nexusHost>
+        <git.path>git@github.com:OlegNyr/testlib.git</git.path>
     </properties>
 
 
@@ -17,18 +21,78 @@
         <repository>
             <id>local-repo-releas</id>
             <name>local-repo</name>
-            <url>http://localhost:8081/repository/maven-releases/</url>
+            <url>${nexusHost}/repository/maven-releases/</url>
         </repository>
+        <snapshotRepository>
+            <id>local-repo-snap</id>
+            <name>local-repo</name>
+            <url>${nexusHost}/repository/maven-snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <scm>
-        <connection>scm:git:git@github.com:OlegNyr/testlib.git</connection>
-        <url>scm:git:git@github.com:OlegNyr/testlib.git</url>
-        <developerConnection>scm:git:git@github.com:OlegNyr/testlib.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <connection>scm:git:${git.path}</connection>
+        <url>scm:git:${git.path}</url>
+        <developerConnection>scm:git:${git.path}</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
+            <!--Сформируем календари для загрузки и тестов-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>create-calendar</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>java</executable>
+                            <arguments>
+                                <argument>-classpath</argument>
+                                <classpath/>
+                                <argument>ru.nyrk.libraly.MyClassMain</argument>
+                                <argument>${project.basedir}</argument>
+                                <argument>${build.outputDirectory}</argument>
+                            </arguments>
+                            <includeProjectDependencies>true</includeProjectDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--уберем исходники проверки и формирования календарей-->
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>/ru/**</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--Соберем релиз -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
@@ -52,7 +116,9 @@
                             <execution>
                                 <id>attach-sources</id>
                                 <phase>deploy</phase>
-                                <goals><goal>jar-no-fork</goal></goals>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
@@ -62,7 +128,9 @@
                             <execution>
                                 <id>attach-javadocs</id>
                                 <phase>deploy</phase>
-                                <goals><goal>jar</goal></goals>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
@@ -88,7 +156,7 @@
                         </executions>
                         <configuration>
                             <serverId>local-repo-releas</serverId>
-                            <nexusUrl>http://localhost:8081/nexus</nexusUrl>
+                            <nexusUrl>${nexusHost}/nexus</nexusUrl>
                             <skipStaging>true</skipStaging>
                         </configuration>
                     </plugin>
