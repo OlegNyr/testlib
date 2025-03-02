@@ -14,12 +14,13 @@
 
         <nexusHost>http://localhost:8081</nexusHost>
         <git.path>git@github.com:OlegNyr/testlib.git</git.path>
+        <serverId.release>local-repo-releas</serverId.release>
     </properties>
 
 
     <distributionManagement>
         <repository>
-            <id>local-repo-releas</id>
+            <id>${serverId.release}</id>
             <name>local-repo</name>
             <url>${nexusHost}/repository/maven-releases/</url>
         </repository>
@@ -155,7 +156,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <serverId>local-repo-releas</serverId>
+                            <serverId>${serverId.release}</serverId>
                             <nexusUrl>${nexusHost}/nexus</nexusUrl>
                             <skipStaging>true</skipStaging>
                         </configuration>
