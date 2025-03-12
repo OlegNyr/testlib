@@ -78,7 +78,8 @@
                 </executions>
                 <configuration>
                     <!-- See usage on maven site from link above for details -->
-                    <flattenMode>fatjar</flattenMode>
+                    <flattenDependencyMode>direct</flattenDependencyMode>
+                    <flattenMode>clean</flattenMode>
                 </configuration>
             </plugin>
 
