@@ -75,11 +75,17 @@
                             <goal>flatten</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
                 </executions>
                 <configuration>
                     <!-- See usage on maven site from link above for details -->
                     <flattenDependencyMode>direct</flattenDependencyMode>
-                    <flattenMode>minimum</flattenMode>
+                    <flattenMode>bom</flattenMode>
                 </configuration>
             </plugin>
 
