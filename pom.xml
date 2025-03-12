@@ -4,7 +4,7 @@
 
     <groupId>ru.nyrk.ai.spring</groupId>
     <artifactId>mylibraly</artifactId>
-    <version>1.9.5</version>
+    <version>1.9.6-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -34,7 +34,7 @@
         <connection>scm:git:${git.path}</connection>
         <url>scm:git:${git.path}</url>
         <developerConnection>scm:git:${git.path}</developerConnection>
-        <tag>v1.9.5</tag>
+        <tag>v1.9.2</tag>
     </scm>
 
     <dependencyManagement>
