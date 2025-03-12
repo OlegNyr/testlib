@@ -79,7 +79,7 @@
                 <configuration>
                     <!-- See usage on maven site from link above for details -->
                     <flattenDependencyMode>direct</flattenDependencyMode>
-                    <flattenMode>clean</flattenMode>
+                    <flattenMode>minimum</flattenMode>
                 </configuration>
             </plugin>
 
