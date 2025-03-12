@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.nyrk.ai.spring</groupId>
     <artifactId>mylibraly</artifactId>
-    <version>1.9-SNAPSHOT</version>
+    <version>1.9</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -35,7 +34,7 @@
         <connection>scm:git:${git.path}</connection>
         <url>scm:git:${git.path}</url>
         <developerConnection>scm:git:${git.path}</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v1.9</tag>
     </scm>
 
     <dependencies>
@@ -63,7 +62,7 @@
                             <executable>java</executable>
                             <arguments>
                                 <argument>-classpath</argument>
-                                <classpath/>
+                                <classpath />
                                 <argument>ru.nyrk.libraly.MyClassMain</argument>
                                 <argument>${project.basedir}</argument>
                                 <argument>${build.outputDirectory}</argument>
